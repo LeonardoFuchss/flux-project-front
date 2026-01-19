@@ -1,0 +1,198 @@
+/* --- CONFIGURAÇÃO GERAL --- */
+.login-container {
+  background-color: #583c87; /* Roxo Fundo */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Necessário para posicionar as nuvens */
+  overflow: hidden; /* Corta as nuvens que vazarem da tela */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- DECORAÇÃO (NUVENS) --- */
+/* --- DECORAÇÃO (NUVENS) --- */
+.blob {
+  position: absolute;
+  background-color: #dcdcdc; /* Cinza claro */
+  border-radius: 50%;
+   /* Opacidade ligeiramente menor para a sobreposição ficar mais suave */
+}
+
+/* Nuvem Superior Esquerda */
+.blob-top-1 {
+  width: 390px;
+  height: 270px;
+  top: -180px;
+  left: -120px;
+}
+
+.blob-top-2 {
+  width: 290px;
+  height: 300px;
+  top: -100px;
+  left: -180px;
+}
+
+/* Nuvem Inferior Direita */
+.blob-bottom-1 {
+  width: 390px;
+  height: 350px;
+  bottom: -220px;
+  right: -120px;
+}
+
+.blob-bottom-2 {
+  width: 350px;
+  height: 350px;
+  bottom: -120px;
+  right: -200px;
+}
+
+/* --- CARD DO LOGIN --- */
+.login-card {
+  background-color: white;
+  border-radius: 20px; /* Bordas arredondadas */
+  width: 500px;
+  padding: 40px 60px;
+  z-index: 10; /* Garante que fique acima das nuvens */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- TYPOGRAPHY --- */
+.flux-logo {
+  color: #583c87;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.subtitle {
+  color: #583c87;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* --- FORMULÁRIO --- */
+.form-row {
+  display: flex;
+  align-items: flex-start; /* MUDOU AQUI: De 'center' para 'flex-start' */
+  margin-bottom: 20px;
+}
+
+.form-row label {
+  width: 80px;
+  font-weight: bold;
+  color: #555;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-top: 15px; /* ADICIONADO AQUI: Empurra o label para o centro do input */
+}
+
+.input-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  background-color: #e9e4f0; /* Roxo bem clarinho/Cinza */
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #583c87;
+  outline: none;
+  padding-right: 40px; /* Espaço para o texto não ficar em cima do ícone */
+}
+
+.input-wrapper i {
+    position: absolute;
+    right: 15px;      
+    
+    /* MÁGICA DO ALINHAMENTO */
+    top: 14px;        /* Quase igual ao padding do input (que é 15px) */
+    
+    cursor: pointer;
+    color: #583c87;
+    font-size: 1.2rem;
+    z-index: 10;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+/* Link "Esqueci minha senha" logo abaixo do input */
+.forgot-pass {
+  display: block;
+  font-size: 0.8rem;
+  color: #583c87;
+  text-decoration: none;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+/* --- ACTIONS (Checkbox e Criar Conta) --- */
+.actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Estilizando o checkbox para ficar quadrado cinza (básico) */
+input[type="checkbox"] {
+    accent-color: #583c87;
+    width: 18px;
+    height: 18px;
+}
+
+.create-account {
+  color: #583c87;
+  text-decoration: none;
+}
+
+/* --- BOTÃO --- */
+.login-btn {
+  width: 100%;
+  background-color: #9284ba; /* Roxo médio */
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  /* Gradiente opcional para ficar mais chique */
+  background: linear-gradient(90deg, #9284ba 0%, #7a6aa6 100%);
+}
+
+.login-btn:hover {
+  filter: brightness(0.9);
+}
+
+/* --- FOOTER --- */
+.login-footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #aaa;
+  font-size: 0.75rem;
+}

@@ -1,0 +1,63 @@
+<div class="login-container">
+  
+  <div class="blob blob-top-1"></div>
+  <div class="blob blob-top-2"></div> <div class="blob blob-bottom-1"></div>
+  <div class="blob blob-bottom-2"></div>
+
+  <div class="login-card">
+    
+    <div class="header text-center">
+      <h1 class="flux-logo">FLUX</h1>
+      <p class="subtitle">Gerencie suas despesas pessoais com eficiência.</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">  
+      <div class="form-row">
+        <label for="login">LOGIN</label>
+        <input 
+          type="text" 
+          id="login" 
+          name="login"
+          placeholder="Digite seu login"
+          [(ngModel)]="credentials.login" 
+          required>
+      </div>
+
+      <div class="form-row">
+        <label for="password">SENHA</label>
+        <div class="input-wrapper">
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              id="password" 
+              name="password"
+              placeholder="Digite sua senha"
+              [(ngModel)]="credentials.password" 
+              required>
+              
+        <i class="bi" 
+          [class.bi-eye]="!showPassword" 
+          [class.bi-eye-slash]="showPassword"
+          (click)="togglePasswordVisibility()">
+        </i>
+            <a href="#" class="forgot-pass">Esqueci minha senha</a>
+        </div>
+      </div>
+
+      <div class="actions-row">
+        <div class="remember-me">
+            <input type="checkbox" id="lembrar" name="lembrar">
+            <label for="lembrar">Lembrar-me</label>
+        </div>
+        <a href="#" class="create-account">Criar uma conta</a>
+      </div>
+
+      <button type="submit" class="login-btn">ENTRAR</button>
+
+    </form>
+
+    <div class="login-footer">
+      <small>© 2026 FLUX project. Todos os direitos reservados.</small>
+    </div>
+
+  </div>
+</div>
