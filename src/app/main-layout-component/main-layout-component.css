@@ -1,0 +1,52 @@
+.main-container {
+  background-color: #583c87;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.blob {
+  position: absolute;
+  background-color: #dcdcdc;
+  border-radius: 50%;
+}
+
+.blob-top-1 {
+  width: 390px;
+  height: 270px;
+  top: -180px;
+  left: -120px;
+}
+
+.blob-top-2 {
+  width: 290px;
+  height: 300px;
+  top: -100px;
+  left: -180px;
+}
+
+.blob-bottom-1 {
+  width: 390px;
+  height: 350px;
+  bottom: -220px;
+  right: -120px;
+}
+
+.blob-bottom-2 {
+  width: 350px;
+  height: 350px;
+  bottom: -120px;
+  right: -200px;
+}
+
+.layout-content {
+   position: relative;
+   z-index: 10;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+}

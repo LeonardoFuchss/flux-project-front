@@ -14,7 +14,7 @@
           id="login" 
           name="login"
           placeholder="Digite seu login"
-          [(ngModel)]="credentials.login" 
+          [(ngModel)]="credentials.login"
           required>
       </div>
 
@@ -27,15 +27,19 @@
               name="password"
               placeholder="Digite sua senha"
               [(ngModel)]="credentials.password" 
-              required>
-              
-        <i class="bi" 
-          [class.bi-eye]="!showPassword" 
-          [class.bi-eye-slash]="showPassword"
-          (click)="togglePasswordVisibility()">
-        </i>
-            <a href="#" class="forgot-pass">Esqueci minha senha</a>
-        </div>
+              required> </div>
+      </div>
+
+      <div class="form-row">
+        <label for="confirmPassword"></label>
+        <div class="input-wrapper">
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              id="confirmPassword" 
+              name="confirmPassword"
+              placeholder="Confirme sua senha"
+              [(ngModel)]="credentials.confirmPassword" 
+              required> </div>
       </div>
 
       <div class="actions-row">
@@ -43,10 +47,10 @@
             <input type="checkbox" id="lembrar" name="lembrar">
             <label for="lembrar">Lembrar-me</label>
         </div>
-        <a href="#" class="create-account">Criar uma conta</a>
+        <a href="#" class="create-account">Entrar</a>
       </div>
 
-      <button type="submit" class="login-btn">ENTRAR</button>
+      <button type="submit" class="login-btn">CRIAR CONTA</button>
 
     </form>
 

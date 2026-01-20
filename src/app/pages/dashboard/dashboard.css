@@ -1,0 +1,228 @@
+/* --- 1. Fundo da Tela (Roxo Profundo) --- */
+:host {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;     /* Centraliza verticalmente */
+  min-height: 100vh;       /* Ocupa a altura total da tela */
+  background-color: #583c87; /* COR DE FUNDO DA TELA */
+  padding: 20px;           /* Espaço para não colar na borda em telas pequenas */
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- 2. O Cartão Principal (Painel Branco) --- */
+.dashboard-card {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 1100px;       /* LARGURA MÁXIMA (aqui você controla o tamanho) */
+  min-height: 600px;       /* Altura mínima para ficar bonito */
+  border-radius: 30px;     /* A BORDAR REDONDA QUE VOCÊ PEDIU */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra elegante */
+  overflow: hidden;        /* Garante que nada saia das bordas redondas */
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- 3. Navbar (Topo do Cartão) --- */
+.navbar {
+  background-color: #ffffff;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0; /* Linha sutil separando o menu */
+}
+
+.brand h1 {
+  margin: 0;
+  color: #583c87;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: -1px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #666;
+  font-weight: 500;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #9c88be;
+  border-radius: 50%;
+}
+
+/* --- 4. Conteúdo Interno --- */
+.main-content {
+  padding: 40px;
+  background-color: #f9f9f9; /* Um cinza muito leve dentro do painel */
+  flex: 1; /* Ocupa o resto do espaço disponível */
+}
+
+/* --- 5. Grid dos Cards de Resumo --- */
+.cards-grid {
+  display: flex;
+  gap: 25px;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Para funcionar no celular */
+}
+
+/* --- 6. Estilo dos Cards Individuais --- */
+.summary-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 25px;
+  flex: 1;
+  min-width: 260px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f0f0f0; /* Borda bem fininha */
+  
+  display: flex;
+  align-items: center; /* Alinha ícone e texto verticalmente */
+  gap: 20px;
+}
+
+/* --- 7. Ícones e Textos --- */
+.icon-container {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%; /* Bolinha perfeita */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.info span {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.info h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Cores dos Ícones */
+.income-bg  { background-color: #dcf5eb; color: #2e9c74; }
+.expense-bg { background-color: #fcebeb; color: #e0465c; }
+.balance-bg { background-color: #eaddf7; color: #583c87; }
+
+/* Cores dos Textos */
+.text-success { color: #2e9c74; }
+.text-danger  { color: #e0465c; }
+.text-purple  { color: #583c87; }
+/* --- Seção de Transações (Painel Branco) --- */
+.transactions-section {
+  margin-top: 30px;        /* Espaço entre os cards e a lista */
+  background-color: #ffffff;
+  border-radius: 20px;     /* Mesmo arredondamento dos cards */
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Sombra suave */
+  border: 1px solid #f0f0f0;
+}
+
+/* Cabeçalho da Lista (Título + Botão) */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+  font-weight: 700;
+}
+
+.view-all-btn {
+  background: none;
+  border: none;
+  color: #583c87; /* Roxo Flux */
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* --- Itens da Lista --- */
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #f5f5f5; /* Linha divisória bem fina */
+  transition: background-color 0.2s;
+}
+
+.transaction-item:last-child {
+  border-bottom: none; /* Remove a linha do último item */
+}
+
+/* Lado Esquerdo (Ícone + Texto) */
+.item-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Pequeno ícone quadrado arredondado */
+.item-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+/* Cores de fundo dos ícones da lista */
+.bg-green { background-color: #e8f5e9; color: #2e9c74; }
+.bg-red   { background-color: #ffebee; color: #e0465c; }
+
+/* Textos */
+.item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-title {
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+}
+
+.item-date {
+  font-size: 12px;
+  color: #999;
+  margin-top: 2px;
+}
+
+/* Valor (Direita) */
+.item-value span {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Estado Vazio */
+.empty-state {
+  text-align: center;
+  padding: 40px 0;
+  color: #999;
+}
