@@ -1,5 +1,4 @@
-
-  <div class="login-card">
+<div class="login-card">
     
     <div class="header text-center">
       <h1 class="flux-logo">FLUX</h1>
@@ -27,11 +26,25 @@
               name="password"
               placeholder="Digite sua senha"
               [(ngModel)]="credentials.password" 
-              required> </div>
+              required>
+              
+            <i class="bi" 
+              [class.bi-eye]="!showPassword" 
+              [class.bi-eye-slash]="showPassword"
+              (click)="togglePasswordVisibility()">
+            </i>
+        </div>
       </div>
 
       <div class="form-row">
-        <label for="confirmPassword"></label>
+        <div class="label-column" style="width: 80px; margin-right: 0;">
+             <label for="confirmPassword"></label>
+             <small class="error-msg" 
+                *ngIf="credentials.confirmPassword && credentials.password !== credentials.confirmPassword">
+               Senhas não conferem
+             </small>
+        </div>
+
         <div class="input-wrapper">
             <input 
               [type]="showPassword ? 'text' : 'password'" 
@@ -39,7 +52,14 @@
               name="confirmPassword"
               placeholder="Confirme sua senha"
               [(ngModel)]="credentials.confirmPassword" 
-              required> </div>
+              required> 
+              
+            <i class="bi" 
+              [class.bi-eye]="!showPassword" 
+              [class.bi-eye-slash]="showPassword"
+              (click)="togglePasswordVisibility()">
+            </i>
+        </div>
       </div>
 
       <div class="actions-row">
@@ -47,10 +67,14 @@
             <input type="checkbox" id="lembrar" name="lembrar">
             <label for="lembrar">Lembrar-me</label>
         </div>
-        <a href="#" class="create-account">Entrar</a>
+        <a routerLink="/login" class="create-account" style="cursor: pointer">Já tenho conta</a>
       </div>
 
-      <button type="submit" class="login-btn">CRIAR CONTA</button>
+      <button type="submit" 
+        class="login-btn"
+        [disabled]="credentials.password !== credentials.confirmPassword">
+        CRIAR CONTA
+      </button>
 
     </form>
 

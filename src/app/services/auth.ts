@@ -2,33 +2,56 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { LoginRequest, LoginResponse } from '../models/auth.models';
+import { Router } from '@angular/router'; // Importante para redirecionar no logout
 
 @Injectable({
-  providedIn: 'root' // Torna o serviço um Singleton
+  providedIn: 'root'
 })
 export class AuthService {
 
-  // URL do Backend
-  private apiUrl = 'http://localhost:8080/auth/login'; 
+  private apiUrl = 'http://localhost:8080/auth/login';
 
-  constructor(private http: HttpClient) { }
+  // Injetar o Router é útil para mandar o usuário para o login ao expirar
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(credentials: LoginRequest): Observable<LoginResponse> {
-    // Converte o JSON para o objeto
     return this.http.post<LoginResponse>(`${this.apiUrl}`, credentials).pipe(
-      // O 'tap' é um operador que permite "espiar" a resposta sem modificá-la (side-effect)
       tap(response => {
-        // Aqui salvamos o Token no "HD" do navegador
-        // É menos seguro que HttpOnly Cookies, mas para MVP é o padrão
+        // 1. Define a expiração (Agora + 2 horas em milissegundos)
+        // 2 horas * 60 min * 60 seg * 1000 ms
+        const expiresIn = new Date().getTime() + (2 * 60 * 60 * 1000);
+        
         localStorage.setItem('token', response.token);
+        // 2. Salva o carimbo de data/hora da expiração
+        localStorage.setItem('expiration', expiresIn.toString());
       })
     );
   }
+
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('expiration');
+    // Redireciona para a tela de login
+    this.router.navigate(['/login']); 
   }
-  // Método utilitário para saber se está logado
+
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('token'); // Retorna true se o token existir
+    const token = localStorage.getItem('token');
+    const expiration = localStorage.getItem('expiration');
+
+    // Se não tiver token ou data de expiração, não está logado
+    if (!token || !expiration) {
+      return false;
+    }
+
+    // Verifica se o momento atual passou da data de expiração
+    const now = new Date().getTime();
+    if (now > parseInt(expiration)) {
+      // Se expirou, forçamos o logout para limpar o lixo do localStorage
+      this.logout();
+      return false;
+    }
+
+    return true; // Token existe e ainda é válido (pelo relógio do navegador)
   }
 }

@@ -82,9 +82,8 @@
 
 /* --- FORMULÁRIO --- */
 .form-row {
-  display: flex;
-  align-items: flex-start; /* MUDOU AQUI: De 'center' para 'flex-start' */
-  margin-bottom: 20px;
+  align-items: flex-start;
+  margin-bottom: 10px;
 }
 
 .form-row label {
@@ -117,7 +116,6 @@ input[type="password"] {
 .input-wrapper i {
     position: absolute;
     right: 15px;      
-    
     /* MÁGICA DO ALINHAMENTO */
     top: 14px;        /* Quase igual ao padding do input (que é 15px) */
     
@@ -195,4 +193,31 @@ input[type="checkbox"] {
   margin-top: 20px;
   color: #aaa;
   font-size: 0.75rem;
+}
+
+/* Garante que o Label e o Erro fiquem um embaixo do outro */
+.label-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  /* O SEGREDO ESTÁ AQUI: Trava o tamanho em exatos 80px */
+  width: 80px;
+  min-width: 80px; 
+  max-width: 80px;
+}
+
+/* Ajuste fino na mensagem de erro */
+.error-msg {
+  color: #ff4d4f;
+  font-size: 11px;
+  line-height: 1.5;
+  margin-top: 1px; /* Distância do Label */
+  text-align: left;
+  white-space: nowrap
+}
+
+/* Opcional: Para alinhar o input ao topo caso a mensagem de erro seja grande */
+.form-row.align-top {
+  align-items: flex-start; 
 }

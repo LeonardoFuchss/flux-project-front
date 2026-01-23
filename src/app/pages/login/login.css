@@ -165,8 +165,9 @@ input[type="checkbox"] {
 }
 
 .create-account {
-  color: #583c87;
+  cursor: pointer;
   text-decoration: none;
+  color: #583c87;
 }
 
 /* --- BOTÃO --- */
