@@ -15,7 +15,8 @@
   background-color: #ffffff;
   width: 100%;
   max-width: 1100px;       /* LARGURA MÁXIMA (aqui você controla o tamanho) */
-  min-height: 600px;       /* Altura mínima para ficar bonito */
+  height: 94vh; /* Ocupa 85% da altura da tela */
+  max-height: 900px; /* Limite de segurança */      /* Altura mínima para ficar bonito */
   border-radius: 30px;     /* A BORDAR REDONDA QUE VOCÊ PEDIU */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra elegante */
   overflow: hidden;        /* Garante que nada saia das bordas redondas */
@@ -128,12 +129,44 @@
 .text-purple  { color: #583c87; }
 /* --- Seção de Transações (Painel Branco) --- */
 .transactions-section {
-  margin-top: 30px;        /* Espaço entre os cards e a lista */
+  margin-top: 30px;
   background-color: #ffffff;
-  border-radius: 20px;     /* Mesmo arredondamento dos cards */
+  border-radius: 20px;
   padding: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Sombra suave */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   border: 1px solid #f0f0f0;
+  
+  /* --- Configuração do Scroll --- */
+  height: 400px;        /* Altura fixa é obrigatória para o scroll funcionar */
+  overflow-y: auto;     /* Cria o scroll vertical quando necessário */
+  overflow-x: hidden;   /* Evita scroll horizontal indesejado */
+
+  /* Estilização da barra para Firefox */
+  scrollbar-width: thin; 
+  scrollbar-color: #dacce6 #f0f0f5; /* Cor da barra / Cor do fundo */
+}
+/* Largura da barra */
+.transactions-section::-webkit-scrollbar {
+  width: 8px; /* Fininha e elegante */
+}
+
+/* Fundo da barra (o trilho) */
+.transactions-section::-webkit-scrollbar-track {
+  background: #f0f0f5; 
+  border-radius: 10px;
+  margin: 10px 0; /* Dá um respiro nas pontas */
+}
+
+/* A parte que se move (o polegar) */
+.transactions-section::-webkit-scrollbar-thumb {
+  background-color: #dacce6; /* Um roxo bem clarinho para não pesar */
+  border-radius: 10px;
+  border: 2px solid #f0f0f5; /* Cria um espaço entre o trilho e a barra */
+}
+
+/* Quando passa o mouse na barra */
+.transactions-section::-webkit-scrollbar-thumb:hover {
+  background-color: #583c87; /* Fica da cor do tema ao interagir */
 }
 
 /* Cabeçalho da Lista (Título + Botão) */
@@ -225,4 +258,155 @@
   text-align: center;
   padding: 40px 0;
   color: #999;
+}
+.button-register {
+  margin: 20px auto 3px auto; 
+  width: 250px;
+  height: 55px;
+  background: linear-gradient(135deg, #583c87 0%, #7a54b5 100%); /* Gradiente chique */
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(88, 60, 135, 0.3);
+   transition: transform 0.2s, box-shadow 0.2s;
+}
+.button-register h1 {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+.button-register:hover {
+  transform: translateY(-2px); /* Sobe um pouquinho */
+  box-shadow: 0 15px 25px rgba(88, 60, 135, 0.4);
+}
+.button-register:active {
+   transform: translateY(1px);
+}
+
+.sidebar {
+  position: fixed;
+  top: 26px;
+  right: -320px;
+  width: 280px;
+  height: 94%;
+
+  background: rgba(88, 60, 135, 0.95);
+  backdrop-filter: blur(10px); /* efeito glass 🔥 */
+
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.25);
+  transition: right 0.35s ease;
+
+  z-index: 1000;
+  padding: 25px 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  right: 0;
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.sidebar-header .avatar {
+  width: 45px;
+  height: 45px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.user-info strong {
+  color: #fff;
+  font-size: 14px;
+ 
+}
+
+.user-info span {
+  color: #d1c4e9;
+  font-size: 12px;
+   margin-left: 20px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.menu li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 14px;
+  border-radius: 12px;
+
+  color: #e0d7f5;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+.menu li:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(5px);
+}
+.menu li.active {
+  background: #ffffff;
+  color: #583c87;
+  font-weight: 600;
+}
+.icon {
+  font-size: 16px;
+}
+.logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 14px;
+  border-radius: 14px;
+
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+
+  cursor: pointer;
+
+  /* estilo moderno */
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  transition: all 0.25s ease;
+
+  backdrop-filter: blur(6px);
+
+  margin-top: 20px;
+}
+.logout:hover {
+  background: #ffffff;
+  color: #583c87;
+
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+.logout:active {
+  transform: scale(0.97);
+}
+.logout::before {
+  font-size: 16px;
 }

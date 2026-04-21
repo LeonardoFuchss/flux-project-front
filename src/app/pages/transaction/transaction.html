@@ -1,0 +1,65 @@
+
+<div class="feedback-toast" 
+     *ngIf="showFeedback" 
+     [ngClass]="feedbackType">
+    
+    <div class="feedback-content">
+        <span class="icon" *ngIf="feedbackType === 'success'">✅</span>
+        <span class="icon" *ngIf="feedbackType === 'error'">⚠️</span>
+        
+        <span class="message">{{ feedbackMessage }}</span>
+        <span class="timestamp">{{ feedbackTimestamp }}</span>
+    </div>
+
+</div>
+
+<div class="transaction-card">
+    <h1>Nova Transação</h1>
+
+    <form (ngSubmit)="onSubmit()">
+        
+        <div class="form-row-inline">
+            <div class="form-group">
+                <label for="type">Tipo</label>
+                <div class="select-wrapper">
+                    <select id="type" name="type" [(ngModel)]="credentials.type" required>
+                        <option value="income">Receita</option>
+                        <option value="expense">Despesa</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Data</label>
+                <input type="date" id="date" name="date" [(ngModel)]="credentials.date" required>
+            </div>
+        </div>
+
+        <div class="form-row-inline">
+            <div class="form-group flex-small">
+                <label for="amount">Valor</label>
+                <input type="number" id="amount" name="amount" placeholder="R$ 0,00" [(ngModel)]="credentials.amount" required>
+            </div>
+
+            <div class="form-group flex-large">
+                <label for="description">Descrição</label>
+                <input type="text" id="description" name="description" placeholder="Ex: Mercado..." [(ngModel)]="credentials.description" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Categoria</label>
+            <div class="category-grid">
+                <div *ngFor="let cat of categories" 
+                     class="category-option"
+                     [class.selected]="credentials.category === cat.value"
+                     (click)="selectCategory(cat.value)">
+                     {{ cat.label }}
+                </div>
+            </div>
+            <input type="hidden" name="category" [(ngModel)]="credentials.category" required>
+        </div>
+
+        <button type="submit" class="btn-submit">Salvar Transação</button>
+    </form>
+</div>

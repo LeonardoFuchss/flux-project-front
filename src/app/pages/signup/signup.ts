@@ -21,7 +21,10 @@ export class SignupComponent {
     confirmPassword: ''
   };
 
-  errorMessage = ''; // Para mostrar erro na tela se falhar
+  feedbackMessage: string = '';
+  feedbackType: 'success' | 'error' | '' = '';
+  feedbackTimestamp: string = '';
+  showFeedback: boolean = false;
 
   // Injeção de dependência via construtor (igual ao Spring)
   constructor(
@@ -35,16 +38,43 @@ export class SignupComponent {
 
   onSubmit() {
     this.signupService.signup(this.credentials).subscribe({
-      // Callback de Sucesso (try)
       next: (response: any) => {
-        console.log('Cadastro realizado com sucesso!', response);
-        this.router.navigate(['/login']); // Redireciona para a home
+        this.triggerFeedback('Cadastro realizado com sucesso!', 'success');
+
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000);
       },
-      // Callback de Erro (catch)
+
       error: (err: any) => {
         console.error('Erro ao cadastrar', err);
-        this.errorMessage = 'Login ou senha inválidos';
+
+        const msg = this.mapErrorMessage(err);
+        this.triggerFeedback(msg, 'error');
       }
     });
   }
+   triggerFeedback(message: string, type: 'success' | 'error') {
+    this.feedbackMessage = message;
+    this.feedbackType = type;
+    this.feedbackTimestamp = new Date().toLocaleTimeString();
+    this.showFeedback = true;
+
+    setTimeout(() => {
+      this.showFeedback = false;
+    }, 4000);
+  }
+
+  private mapErrorMessage(err: any): string {
+  const backendMsg = err.error?.message || err.error || '';
+
+  const errorMap: Record<string, string> = {
+    'This user login is already in use. Please try again!': 'Usuário já existe',
+    'Invalid credentials': 'Credenciais inválidas',
+    'The passwords do not match. Try again!':'As senhas não conferem.',
+    'Password too weak': 'Senha muito fraca'
+  };
+
+  return errorMap[backendMsg] || 'Erro ao realizar cadastro';
+}
 }

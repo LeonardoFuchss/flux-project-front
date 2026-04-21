@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
 // AJUSTE 1: Verifique se o nome do arquivo é dashboard.service.ts
 import { DashboardService } from '../../services/dashboard'; 
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule], 
+  imports: [CommonModule, RouterLink], 
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css', // ou styleUrls: ['./dashboard.css'] dependendo da versão
 })
@@ -23,7 +25,9 @@ export class DashboardComponent implements OnInit {
 
   isLoading = true;
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private dashboardService: DashboardService,
+  private router: Router) {   
+  }
 
   ngOnInit(): void {
     this.carregarDashboardCompleto();
@@ -49,4 +53,13 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+  isSidebarOpen = false;
+
+  toggleSidebar() {
+  this.isSidebarOpen = !this.isSidebarOpen;
+ }
+ logout() {
+  localStorage.removeItem('token');
+  this.router.navigate(['/login']);
+}
 }

@@ -6,9 +6,39 @@
     </div>
     <div class="user-profile">
       <span>Olá, Usuário!</span>
-      <div class="avatar"></div>
+      <div class="avatar" (click)="toggleSidebar()"></div>
     </div>
   </nav>
+
+<div class="sidebar" [class.open]="isSidebarOpen">
+
+  <div class="sidebar-header">
+    <div class="avatar"></div>
+    <div class="user-info">
+      <strong>Usuário</strong>
+    </div>
+  </div>
+
+  <ul class="menu">
+    <li class="active">
+      <i class="icon">👤</i>
+      <span>Meus dados</span>
+    </li>
+    <li>
+      <i class="icon">💰</i>
+      <span>Minhas receitas</span>
+    </li>
+    <li>
+      <i class="icon">📉</i>
+      <span>Minhas despesas</span>
+    </li>
+  </ul>
+
+  <div class="logout" (click)="logout()">
+    Sair
+  </div>
+
+</div>
 
   <main class="main-content">
     
@@ -99,6 +129,9 @@
         </div>
       </div>
 
+    </div>
+    <div routerLink="/transaction" class="button-register">
+      <h1>Adicionar Transação</h1>
     </div>
   </main>
 </div>
