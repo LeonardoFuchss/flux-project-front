@@ -1,57 +1,55 @@
-/* Container Principal - Mais compacto */
+/* Card principal */
 .transaction-card {
   background-color: white;
   border-radius: 20px;
-  width: 750px; /* Largura levemente reduzida */
-  padding: 25px 30px; /* Padding reduzido (era 40px) */
+  width: 750px;
+  padding: 25px 30px;
   z-index: 10;
   box-shadow: 0 20px 40px rgba(88, 60, 135, 0.15);
   display: flex;
   flex-direction: column;
-  gap: 5px; /* Gap reduzido */
+  gap: 5px;
   margin: 10px auto;
-  
-  /* Garante que não estoure a tela se for muito pequena */
-  max-height: 95vh;
-  overflow-y: auto; 
-  scrollbar-width: thin; /* Barra fina para Firefox */
+
+  max-height: 95vh; /* evita estourar a tela */
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 /* Título */
 .transaction-card h1 {
   color: #583c87;
   font-weight: 800;
-  font-size: 1.5rem; /* Fonte levemente menor */
-  margin-bottom: 38px; /* Margem reduzida */
+  font-size: 1.5rem;
+  margin-bottom: 38px;
   text-align: center;
   letter-spacing: -0.5px;
 }
 
-/* Nova classe para colocar inputs lado a lado */
+/* Linha com múltiplos inputs */
 .form-row-inline {
   display: flex;
   gap: 15px;
   width: 100%;
 }
 
-/* Utilitários de tamanho para a linha inline */
+/* Grupo padrão */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 6px; /* Espaço label-input reduzido */
-  margin-bottom: 12px; /* Espaço entre grupos reduzido */
-  flex: 1; /* Padrão: ocupa espaço igual */
+  gap: 6px;
+  margin-bottom: 12px;
+  flex: 1;
 }
 
-/* Valor ocupa menos espaço (30%) */
+/* Ajustes de proporção */
 .flex-small {
-    flex: 0.4; 
-    min-width: 100px;
+  flex: 0.4;
+  min-width: 100px;
 }
 
-/* Descrição ocupa mais espaço (70%) */
 .flex-large {
-    flex: 0.6;
+  flex: 0.6;
 }
 
 /* Labels */
@@ -62,11 +60,11 @@
   margin-left: 4px;
 }
 
-/* Inputs e Selects */
+/* Inputs */
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: 10px 14px; /* Padding interno reduzido (era 14px) */
+  padding: 10px 14px;
   border: 2px solid #f0f0f5;
   background-color: #f9f9fc;
   border-radius: 10px;
@@ -88,11 +86,11 @@
   color: #bbb;
 }
 
-/* Botão de Enviar */
+/* Botão */
 .btn-submit {
   width: 100%;
   margin-top: 20px;
-  padding: 14px; /* Botão um pouco mais fino */
+  padding: 14px;
   background: linear-gradient(135deg, #583c87 0%, #7a54b5 100%);
   color: white;
   border: none;
@@ -109,11 +107,11 @@
   box-shadow: 0 12px 20px rgba(88, 60, 135, 0.4);
 }
 
-/* Grid de Categorias - Otimizado para 4 colunas */
+/* Grid de categorias */
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 colunas! */
-  gap: 8px; /* Gap menor */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
   margin-top: 2px;
 }
 
@@ -121,12 +119,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 2px; /* Padding vertical menor */
+  padding: 8px 2px;
   background-color: #f9f9fc;
   border: 2px solid #f0f0f5;
   border-radius: 10px;
   color: #666;
-  font-size: 0.75rem; /* Fonte menor para caber */
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -148,52 +146,50 @@
   transform: translateY(-1px);
 }
 
-/* Responsividade para telas muito pequenas (celulares) */
+/* Ajuste para mobile */
 @media (max-width: 500px) {
   .form-row-inline {
-    flex-direction: column; /* Volta a empilhar em celular */
+    flex-direction: column;
     gap: 10px;
   }
+
   .category-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas em celular */
+    grid-template-columns: repeat(3, 1fr);
   }
 }
-/* Container base do Alerta */
+
+/* Toast */
 .feedback-toast {
-  position: fixed; /* Fixo no topo da tela */
+  position: fixed;
   top: 20px;
   left: 50%;
-  transform: translateX(-50%); /* Centraliza exato */
-  z-index: 1000; /* Garante que fique acima de tudo (inclusive do card) */
-  
+  transform: translateX(-50%);
+  z-index: 1000;
+
   min-width: 300px;
   padding: 15px 25px;
-  border-radius: 50px; /* Formato de pílula */
+  border-radius: 50px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  
+
   font-family: 'Segoe UI', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
-  
-  /* Animação de entrada */
+
   animation: slideDown 0.5s ease forwards;
 }
 
-/* Cores para Sucesso */
 .feedback-toast.success {
   background-color: #d4edda;
   color: #155724;
   border: 1px solid #c3e6cb;
 }
 
-/* Cores para Erro */
 .feedback-toast.error {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
 
-/* Conteúdo interno */
 .feedback-content {
   display: flex;
   align-items: center;
@@ -209,7 +205,7 @@
   margin-left: 10px;
 }
 
-/* Animação suave descendo */
+/* animação simples */
 @keyframes slideDown {
   from {
     top: -100px;

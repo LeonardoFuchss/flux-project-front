@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
-// AJUSTE 1: Verifique se o nome do arquivo é dashboard.service.ts
 import { DashboardService } from '../../services/dashboard'; 
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
@@ -11,9 +10,9 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterLink], 
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css', // ou styleUrls: ['./dashboard.css'] dependendo da versão
+  styleUrl: './dashboard.css',
 })
-// AJUSTE 2: Adicione "implements OnInit"
+
 export class DashboardComponent implements OnInit {
 
   dashboardData = {

@@ -1,25 +1,23 @@
-/* --- CONFIGURAÇÃO GERAL --- */
+/* Base da tela de login */
 .login-container {
-  background-color: #583c87; /* Roxo Fundo */
+  background-color: #583c87;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Necessário para posicionar as nuvens */
-  overflow: hidden; /* Corta as nuvens que vazarem da tela */
+  position: relative; /* necessário por causa dos blobs */
+  overflow: hidden;   /* corta o que sair da tela */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* --- DECORAÇÃO (NUVENS) --- */
-/* --- DECORAÇÃO (NUVENS) --- */
+/* Blobs de fundo (decoração) */
 .blob {
   position: absolute;
-  background-color: #dcdcdc; /* Cinza claro */
+  background-color: #dcdcdc;
   border-radius: 50%;
-   /* Opacidade ligeiramente menor para a sobreposição ficar mais suave */
 }
 
-/* Nuvem Superior Esquerda */
+/* Topo esquerdo */
 .blob-top-1 {
   width: 390px;
   height: 270px;
@@ -34,7 +32,7 @@
   left: -180px;
 }
 
-/* Nuvem Inferior Direita */
+/* Inferior direito */
 .blob-bottom-1 {
   width: 390px;
   height: 350px;
@@ -49,20 +47,20 @@
   right: -200px;
 }
 
-/* --- CARD DO LOGIN --- */
+/* Card central */
 .login-card {
   background-color: white;
-  border-radius: 20px; /* Bordas arredondadas */
+  border-radius: 20px;
   width: 500px;
   padding: 40px 60px;
-  z-index: 10; /* Garante que fique acima das nuvens */
+  z-index: 10; /* fica acima dos blobs */
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* --- TYPOGRAPHY --- */
+/* Logo */
 .flux-logo {
   color: #583c87;
   font-weight: 700;
@@ -72,6 +70,7 @@
   text-align: center;
 }
 
+/* Subtítulo */
 .subtitle {
   color: #583c87;
   font-weight: 600;
@@ -80,10 +79,10 @@
   margin-bottom: 30px;
 }
 
-/* --- FORMULÁRIO --- */
+/* Linha de input + label */
 .form-row {
   display: flex;
-  align-items: flex-start; /* MUDOU AQUI: De 'center' para 'flex-start' */
+  align-items: flex-start; /* deixa o label alinhado com o topo */
   margin-bottom: 20px;
 }
 
@@ -93,45 +92,44 @@
   color: #555;
   font-size: 0.8rem;
   text-transform: uppercase;
-  margin-top: 15px; /* ADICIONADO AQUI: Empurra o label para o centro do input */
+  margin-top: 15px; /* ajusta na altura do input */
 }
 
 .input-wrapper {
-    width: 100%;
-    position: relative;
+  width: 100%;
+  position: relative;
 }
 
+/* Inputs */
 input[type="text"],
 input[type="password"] {
   width: 100%;
-  background-color: #e9e4f0; /* Roxo bem clarinho/Cinza */
+  background-color: #e9e4f0;
   border: none;
   padding: 15px;
   border-radius: 10px;
   font-size: 1rem;
   color: #583c87;
   outline: none;
-  padding-right: 40px; /* Espaço para o texto não ficar em cima do ícone */
+  padding-right: 40px; /* espaço pro ícone */
 }
 
+/* Ícone dentro do input */
 .input-wrapper i {
-    position: absolute;
-    right: 15px;      
-    
-    /* MÁGICA DO ALINHAMENTO */
-    top: 14px;        /* Quase igual ao padding do input (que é 15px) */
-    
-    cursor: pointer;
-    color: #583c87;
-    font-size: 1.2rem;
-    z-index: 10;
+  position: absolute;
+  right: 15px;
+  top: 14px; /* alinhado com o padding do input */
+  cursor: pointer;
+  color: #583c87;
+  font-size: 1.2rem;
+  z-index: 10;
 }
 
 input::placeholder {
   color: #999;
 }
 
-/* Link "Esqueci minha senha" logo abaixo do input */
+/* "Esqueci senha" */
 .forgot-pass {
   display: block;
   font-size: 0.8rem;
@@ -141,7 +139,7 @@ input::placeholder {
   margin-left: 5px;
 }
 
-/* --- ACTIONS (Checkbox e Criar Conta) --- */
+/* Linha com checkbox + criar conta */
 .actions-row {
   display: flex;
   justify-content: space-between;
@@ -152,16 +150,16 @@ input::placeholder {
 }
 
 .remember-me {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Estilizando o checkbox para ficar quadrado cinza (básico) */
+/* Checkbox básico */
 input[type="checkbox"] {
-    accent-color: #583c87;
-    width: 18px;
-    height: 18px;
+  accent-color: #583c87;
+  width: 18px;
+  height: 18px;
 }
 
 .create-account {
@@ -170,27 +168,25 @@ input[type="checkbox"] {
   color: #583c87;
 }
 
-/* --- BOTÃO --- */
+/* Botão principal */
 .login-btn {
   width: 100%;
-  background-color: #9284ba; /* Roxo médio */
-  color: white;
   border: none;
   padding: 15px;
   border-radius: 10px;
   font-weight: bold;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background 0.3s;
-  /* Gradiente opcional para ficar mais chique */
+  color: white;
   background: linear-gradient(90deg, #9284ba 0%, #7a6aa6 100%);
+  transition: filter 0.3s;
 }
 
 .login-btn:hover {
   filter: brightness(0.9);
 }
 
-/* --- FOOTER --- */
+/* Rodapé */
 .login-footer {
   text-align: center;
   margin-top: 20px;

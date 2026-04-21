@@ -51,7 +51,7 @@ export class TransactionComponent {
     { value: 'OTHERS', label: 'Outros' }
   ];
 
-  // Método para selecionar (caso não queira usar ngModel direto no loop)
+  // Método para selecionar
   selectCategory(categoryValue: string) {
     this.credentials.category = categoryValue;
   }
@@ -71,7 +71,7 @@ export class TransactionComponent {
 
       // Callback de Erro
       error: (errorObj) => {
-        // Log para você investigar o que está vindo exatamente no console do navegador
+        // Log para investigar o que está vindo exatamente no console do navegador
         console.log('Erro completo:', errorObj);
 
         // Tentativa robusta de pegar a mensagem de erro

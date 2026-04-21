@@ -24,7 +24,7 @@ export class LoginComponent {
 
   errorMessage = ''; // Para mostrar erro na tela se falhar
 
-  // Injeção de dependência via construtor (igual ao Spring)
+  // Injeção de dependência via construtor
   constructor(
     private authService: AuthService,
     private router: Router

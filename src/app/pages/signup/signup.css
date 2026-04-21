@@ -1,20 +1,19 @@
-/* --- CONFIGURAÇÃO GERAL --- */
+/* Base da tela */
 .login-container {
-  background-color: #583c87; /* Roxo Fundo */
+  background-color: #583c87;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: relative; /* usado pelos blobs */
   overflow: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* --- DECORAÇÃO (NUVENS) --- */
-/* --- DECORAÇÃO (NUVENS) --- */
+/* Blobs decorativos */
 .blob {
   position: absolute;
-  background-color: #dcdcdc; /* Cinza claro */
+  background-color: #dcdcdc;
   border-radius: 50%;
 }
 
@@ -32,7 +31,6 @@
   left: -180px;
 }
 
-/* Nuvem Inferior Direita */
 .blob-bottom-1 {
   width: 390px;
   height: 350px;
@@ -47,20 +45,20 @@
   right: -200px;
 }
 
-/* --- CARD DO LOGIN --- */
+/* Card principal */
 .login-card {
   background-color: white;
-  border-radius: 20px; /* Bordas arredondadas */
+  border-radius: 20px;
   width: 500px;
   padding: 40px 60px;
-  z-index: 10; /* Garante que fique acima das nuvens */
+  z-index: 10;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* --- TYPOGRAPHY --- */
+/* Header */
 .flux-logo {
   color: #583c87;
   font-weight: 700;
@@ -78,7 +76,7 @@
   margin-bottom: 30px;
 }
 
-/* --- FORMULÁRIO --- */
+/* Form */
 .form-row {
   align-items: flex-start;
   margin-bottom: 10px;
@@ -90,44 +88,44 @@
   color: #555;
   font-size: 0.8rem;
   text-transform: uppercase;
-  margin-top: 15px; /* ADICIONADO AQUI: Empurra o label para o centro do input */
+  margin-top: 15px; /* ajuste fino com o input */
 }
 
 .input-wrapper {
-    width: 100%;
-    position: relative;
+  width: 100%;
+  position: relative;
 }
 
+/* Inputs */
 input[type="text"],
 input[type="password"] {
   width: 100%;
-  background-color: #e9e4f0; /* Roxo bem clarinho/Cinza */
+  background-color: #e9e4f0;
   border: none;
   padding: 15px;
   border-radius: 10px;
   font-size: 1rem;
   color: #583c87;
   outline: none;
-  padding-right: 40px; /* Espaço para o texto não ficar em cima do ícone */
+  padding-right: 40px; /* espaço pro ícone */
 }
 
+/* Ícone dentro do input */
 .input-wrapper i {
-    position: absolute;
-    right: 15px;      
-    /* MÁGICA DO ALINHAMENTO */
-    top: 14px;        /* Quase igual ao padding do input (que é 15px) */
-    
-    cursor: pointer;
-    color: #583c87;
-    font-size: 1.2rem;
-    z-index: 10;
+  position: absolute;
+  right: 15px;
+  top: 14px; /* alinhado com padding */
+  cursor: pointer;
+  color: #583c87;
+  font-size: 1.2rem;
+  z-index: 10;
 }
 
 input::placeholder {
   color: #999;
 }
 
-/* Link "Esqueci minha senha" logo abaixo do input */
+/* Auxiliar */
 .forgot-pass {
   display: block;
   font-size: 0.8rem;
@@ -137,7 +135,7 @@ input::placeholder {
   margin-left: 5px;
 }
 
-/* --- ACTIONS (Checkbox e Criar Conta) --- */
+/* Ações */
 .actions-row {
   display: flex;
   justify-content: space-between;
@@ -148,16 +146,15 @@ input::placeholder {
 }
 
 .remember-me {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Estilizando o checkbox para ficar quadrado cinza (básico) */
 input[type="checkbox"] {
-    accent-color: #583c87;
-    width: 18px;
-    height: 18px;
+  accent-color: #583c87;
+  width: 18px;
+  height: 18px;
 }
 
 .create-account {
@@ -165,27 +162,25 @@ input[type="checkbox"] {
   text-decoration: none;
 }
 
-/* --- BOTÃO --- */
+/* Botão */
 .login-btn {
   width: 100%;
-  background-color: #9284ba; /* Roxo médio */
-  color: white;
   border: none;
   padding: 15px;
   border-radius: 10px;
   font-weight: bold;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background 0.3s;
-  /* Gradiente opcional para ficar mais chique */
+  color: white;
   background: linear-gradient(90deg, #9284ba 0%, #7a6aa6 100%);
+  transition: filter 0.3s;
 }
 
 .login-btn:hover {
   filter: brightness(0.9);
 }
 
-/* --- FOOTER --- */
+/* Footer */
 .login-footer {
   text-align: center;
   margin-top: 20px;
@@ -193,33 +188,31 @@ input[type="checkbox"] {
   font-size: 0.75rem;
 }
 
-/* Garante que o Label e o Erro fiquem um embaixo do outro */
+/* Label + erro alinhados em coluna */
 .label-column {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
-  /* O SEGREDO ESTÁ AQUI: Trava o tamanho em exatos 80px */
-  width: 80px;
-  min-width: 80px; 
+  width: 80px; /* mantém alinhamento fixo */
+  min-width: 80px;
   max-width: 80px;
 }
 
-/* Ajuste fino na mensagem de erro */
 .error-msg {
   color: #ff4d4f;
   font-size: 11px;
   line-height: 1.5;
-  margin-top: 1px; /* Distância do Label */
+  margin-top: 1px;
   text-align: left;
-  white-space: nowrap
+  white-space: nowrap;
 }
 
-/* Opcional: Para alinhar o input ao topo caso a mensagem de erro seja grande */
+/* usado quando tem erro maior */
 .form-row.align-top {
-  align-items: flex-start; 
+  align-items: flex-start;
 }
 
+/* Toast de feedback */
 .feedback-toast {
   position: fixed;
   top: 20px;
@@ -266,7 +259,7 @@ input[type="checkbox"] {
   margin-left: 10px;
 }
 
-/* animação */
+/* animação simples do toast */
 @keyframes slideDown {
   from {
     top: -100px;
