@@ -22,7 +22,11 @@ export class LoginComponent {
     password: ''
   };
 
-  errorMessage = ''; // Para mostrar erro na tela se falhar
+  feedbackMessage: string = '';
+  feedbackType: 'success' | 'error' | '' = '';
+  feedbackTimestamp: string = '';
+  showFeedback: boolean = false;
+
 
   // Injeção de dependência via construtor
   constructor(
@@ -38,15 +42,40 @@ export class LoginComponent {
     this.authService.login(this.credentials).subscribe({
       // Callback de Sucesso (try)
       next: (response: any) => {
+        this.triggerFeedback('Login realizado com sucesso!', 'success');
         console.log('Login realizado com sucesso!', response);
-        this.router.navigate(['/dashboard']); // Redireciona para a home
+        setTimeout(() => {
+          this.router.navigate(['/dashboard']);;
+        }, 2000);
       },
       // Callback de Erro (catch)
       error: (err: any) => {
-        console.error('Erro ao logar', err);
-        this.errorMessage = 'Email ou senha inválidos';
+       const msg = this.mapErrorMessage(err);
+        this.triggerFeedback(msg, 'error');
       }
     });
   }
+  triggerFeedback(message: string, type: 'success' | 'error') {
+    this.feedbackMessage = message;
+    this.feedbackType = type;
+    this.feedbackTimestamp = new Date().toLocaleTimeString();
+    this.showFeedback = true;
+
+    setTimeout(() => {
+      this.showFeedback = false;
+    }, 4000);
+  }
+
+  private mapErrorMessage(err: any): string {
+  const backendMsg = err.error?.message || err.error || '';
+
+  const errorMap: Record<string, string> = {
+    'Invalid Login.': 'Login inválido.',
+    'Invalid Password.': 'Senha inválida.',
+    'Invalid Credentials.': 'Credenciais inválidas.',
+  };
+
+  return errorMap[backendMsg] || 'Erro ao realizar login';
+}
 
 }

@@ -22,4 +22,11 @@ export class TransactionService {
       })
     );
   }
+  getTransactionById(id: string) {
+  return this.http.get<TransactionRequest>(`${this.apiUrl}/${id}`);
+}
+
+updateTransaction(id: string, data: TransactionRequest) {
+  return this.http.patch(`${this.apiUrl}/${id}`, data);
+}
 }

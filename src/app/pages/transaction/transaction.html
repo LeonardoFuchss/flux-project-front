@@ -14,7 +14,7 @@
 </div>
 
 <div class="transaction-card">
-    <h1>Nova Transação</h1>
+    <h1>{{ isEditMode ? 'Editar Transação' : 'Nova Transação' }}</h1>
 
     <form (ngSubmit)="onSubmit()">
         
@@ -24,7 +24,8 @@
                 <div class="select-wrapper">
                     <select id="type" name="type" [(ngModel)]="credentials.type" required>
                         <option value="income">Receita</option>
-                        <option value="expense">Despesa</option>
+                        <option value="expense">Despesa</option
+                            >
                     </select>
                 </div>
             </div>
@@ -60,6 +61,8 @@
             <input type="hidden" name="category" [(ngModel)]="credentials.category" required>
         </div>
 
-        <button type="submit" class="btn-submit">Salvar Transação</button>
+        <button type="submit" class="btn-submit">
+          {{ isEditMode ? 'Atualizar Transação' : 'Salvar Transação' }}
+        </button>
     </form>
 </div>

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'; 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
 export interface IDBTransaction {
+  id: number;
   type: string;
   amount: number;
   date: string;
@@ -20,30 +20,47 @@ export class DashboardService {
 
   constructor(private http: HttpClient) {}
 
-  
   private getHeaders(): HttpHeaders {
-    
-    const token = localStorage.getItem('token'); 
-    
+    const token = localStorage.getItem('token');
+
     return new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json' 
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
     });
   }
 
-  getTotalIncomes(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/summary/total-income`, { headers: this.getHeaders() });
+  getTotalIncomes(month: number, year: number): Observable<number> {
+    return this.http.get<number>(
+      `${this.apiUrl}/summary/total-income?month=${month}&year=${year}`,
+      { headers: this.getHeaders() }
+    );
   }
 
-  getTotalExpenses(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/summary/total-expense`, { headers: this.getHeaders() });
+  getTotalExpenses(month: number, year: number): Observable<number> {
+    return this.http.get<number>(
+      `${this.apiUrl}/summary/total-expense?month=${month}&year=${year}`,
+      { headers: this.getHeaders() }
+    );
   }
 
-  getCurrentBalance(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/summary/current-balance`, { headers: this.getHeaders() });
-  }  
+  getCurrentBalance(month: number, year: number): Observable<number> {
+    return this.http.get<number>(
+      `${this.apiUrl}/summary/current-balance?month=${month}&year=${year}`,
+      { headers: this.getHeaders() }
+    );
+  }
 
-  getAllTransactions(): Observable<IDBTransaction[]> {
-  return this.http.get<IDBTransaction[]>(`${this.apiUrl}`, { headers: this.getHeaders() });
-}
+  getAllTransactions(month: number, year: number): Observable<IDBTransaction[]> {
+    return this.http.get<IDBTransaction[]>(
+      `${this.apiUrl}?month=${month}&year=${year}`,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  deleteTransaction(id: number) {
+    return this.http.delete(
+      `${this.apiUrl}/${id}`,
+      { headers: this.getHeaders() }
+    );
+  }
 }

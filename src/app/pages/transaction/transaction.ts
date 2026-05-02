@@ -3,7 +3,7 @@ import { TransactionRequest } from '../../models/transaction.models';
 import { TransactionService } from '../../services/transaction';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router'; 
+import { RouterLink, ActivatedRoute } from '@angular/router'; 
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,6 +13,37 @@ import { CommonModule } from '@angular/common';
   styleUrl: './transaction.css',
 })
 export class TransactionComponent {
+
+ constructor(
+    private transactionService: TransactionService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+
+  isEditMode: boolean = false; // Para diferenciar entre criação e edição
+  transactionId: string | null = null; // Para armazenar o ID da transação em edição
+
+  ngOnInit() {
+  this.transactionId = this.route.snapshot.paramMap.get('id');
+
+  if (this.transactionId) {
+    this.isEditMode = true;
+    this.loadTransaction(this.transactionId);
+  }
+}
+
+loadTransaction(id: string) {
+  this.transactionService.getTransactionById(id).subscribe({
+    next: (data) => {
+      this.credentials = data;
+    },
+    error: (err) => {
+      console.error('Erro ao carregar transação', err);
+    }
+  });
+}
+
 
   feedbackMessage: string = '';
   feedbackType: 'success' | 'error' | '' = '';
@@ -27,14 +58,9 @@ export class TransactionComponent {
       category: ''
     };
 
-
-
+    
     errorMessage = '';
 
-    constructor(
-    private transactionService: TransactionService,
-    private router: Router
-  ) {}
 
   categories = [
     { value: 'FOOD', label: 'Alimentação' },
@@ -57,30 +83,30 @@ export class TransactionComponent {
   }
 
    onSubmit() {
-    this.transactionService.createTransaction(this.credentials).subscribe({
-      // Callback de Sucesso
-      next: (response: any) => {
-        // 1. Mostra o feedback visual
-        this.triggerFeedback('Transação salva com sucesso!', 'success');
-        
-        // 2. Espera 2 segundos (2000ms) antes de mudar de página
-        setTimeout(() => {
-            this.router.navigate(['/dashboard']); 
-        }, 2000);
+  if (this.isEditMode && this.transactionId) {
+    this.transactionService.updateTransaction(this.transactionId, this.credentials).subscribe({
+      next: () => {
+        this.triggerFeedback('Transação atualizada com sucesso!', 'success');
+        setTimeout(() => this.router.navigate(['/dashboard']), 2000);
       },
-
-      // Callback de Erro
-      error: (errorObj) => {
-        // Log para investigar o que está vindo exatamente no console do navegador
-        console.log('Erro completo:', errorObj);
-
-        // Tentativa robusta de pegar a mensagem de erro
-        const msg = errorObj.error?.message || errorObj.error || 'Erro desconhecido ao salvar.';
-        
-        this.triggerFeedback(msg, 'error');
+      error: (err) => {
+        console.error(err);
+        this.triggerFeedback('Erro ao atualizar transação', 'error');
+      }
+    });
+  } else {
+    this.transactionService.createTransaction(this.credentials).subscribe({
+      next: () => {
+        this.triggerFeedback('Transação criada com sucesso!', 'success');
+        setTimeout(() => this.router.navigate(['/dashboard']), 2000);
+      },
+      error: (err) => {
+        console.error(err);
+        this.triggerFeedback('Erro ao criar transação', 'error');
       }
     });
   }
+}
   triggerFeedback(message: string, type: 'success' | 'error') {
     this.feedbackMessage = message;
     this.feedbackType = type;

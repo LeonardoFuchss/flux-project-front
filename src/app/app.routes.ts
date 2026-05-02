@@ -23,7 +23,11 @@ export const routes: Routes = [
         component: SignupComponent 
       },
       { 
-        path: 'transaction',
+        path: 'transaction/new',
+        component: TransactionComponent
+      },
+      { 
+        path: 'transaction/:id/edit',
         component: TransactionComponent
       },
       { 

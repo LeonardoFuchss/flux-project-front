@@ -22,6 +22,8 @@ export class AuthService {
         const expiresIn = new Date().getTime() + (2 * 60 * 60 * 1000);
         
         localStorage.setItem('token', response.token);
+        const username = response.username || credentials.login;
+        localStorage.setItem('username', username);
         // 2. Salva o carimbo de data/hora da expiração
         localStorage.setItem('expiration', expiresIn.toString());
       })
@@ -31,8 +33,13 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
+    localStorage.removeItem('username');
     // Redireciona para a tela de login
     this.router.navigate(['/login']); 
+  }
+
+  getUsername(): string {
+    return localStorage.getItem('username') || 'Usuário';
   }
 
   isLoggedIn(): boolean {

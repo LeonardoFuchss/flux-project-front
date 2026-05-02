@@ -82,7 +82,6 @@
   min-width: 260px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
   border: 1px solid #f0f0f0;
-
   display: flex;
   align-items: center;
   gap: 20px;
@@ -120,13 +119,32 @@
 }
 
 /* Cores auxiliares */
-.income-bg  { background-color: #dcf5eb; color: #2e9c74; }
-.expense-bg { background-color: #fcebeb; color: #e0465c; }
-.balance-bg { background-color: #eaddf7; color: #583c87; }
+.income-bg {
+  background-color: #dcf5eb;
+  color: #2e9c74;
+}
 
-.text-success { color: #2e9c74; }
-.text-danger  { color: #e0465c; }
-.text-purple  { color: #583c87; }
+.expense-bg {
+  background-color: #fcebeb;
+  color: #e0465c;
+}
+
+.balance-bg {
+  background-color: #eaddf7;
+  color: #583c87;
+}
+
+.text-success {
+  color: #2e9c74;
+}
+
+.text-danger {
+  color: #e0465c;
+}
+
+.text-purple {
+  color: #583c87;
+}
 
 /* Lista de transações */
 .transactions-section {
@@ -136,11 +154,9 @@
   padding: 30px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   border: 1px solid #f0f0f0;
-
   height: 400px; /* necessário pro scroll funcionar */
   overflow-y: auto;
   overflow-x: hidden;
-
   scrollbar-width: thin;
   scrollbar-color: #dacce6 #f0f0f5;
 }
@@ -192,8 +208,7 @@
 
 /* Item da lista */
 .transaction-item {
-  display: flex;
-  justify-content: space-between;
+   display: flex;
   align-items: center;
   padding: 18px 0;
   border-bottom: 1px solid #f5f5f5;
@@ -206,11 +221,16 @@
 
 /* Lado esquerdo */
 .item-left {
-  display: flex;
+   display: flex;
   align-items: center;
   gap: 15px;
+  flex: 1; /* 👈 ESSENCIAL */
 }
-
+.item-value {
+  width: 140px;       /* controla alinhamento */
+  text-align: right;
+  margin-right: 10px; /* espaço antes dos botões */
+}
 .item-icon {
   width: 40px;
   height: 40px;
@@ -221,8 +241,15 @@
   font-size: 14px;
 }
 
-.bg-green { background-color: #e8f5e9; color: #2e9c74; }
-.bg-red   { background-color: #ffebee; color: #e0465c; }
+.bg-green {
+  background-color: #e8f5e9;
+  color: #2e9c74;
+}
+
+.bg-red {
+  background-color: #ffebee;
+  color: #e0465c;
+}
 
 /* Textos */
 .item-info {
@@ -244,6 +271,8 @@
 
 /* Valor */
 .item-value span {
+  display: inline-block;
+  min-width: 100px;
   font-weight: 700;
   font-size: 16px;
 }
@@ -293,19 +322,14 @@
   right: -320px; /* começa escondida */
   width: 280px;
   height: 94%;
-
   background: rgba(88, 60, 135, 0.95);
   backdrop-filter: blur(10px);
-
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
-
   box-shadow: -10px 0 40px rgba(0, 0, 0, 0.25);
   transition: right 0.35s ease;
-
   z-index: 1000;
   padding: 25px 20px;
-
   display: flex;
   flex-direction: column;
 }
@@ -380,23 +404,17 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-
   padding: 14px;
   border-radius: 14px;
-
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.3px;
-
   cursor: pointer;
-
   background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.15);
-
   transition: all 0.25s ease;
   backdrop-filter: blur(6px);
-
   margin-top: 20px;
 }
 
@@ -409,4 +427,152 @@
 
 .logout:active {
   transform: scale(0.97);
+}
+
+/* Container dos filtros */
+.filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Estilo base dos selects */
+.filters select {
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid #e0d7f5;
+  background-color: #f5f3fb;
+  color: #583c87;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+.filters select:hover {
+  border-color: #583c87;
+}
+
+/* Focus (quando clica) */
+.filters select:focus {
+  outline: none;
+  border-color: #583c87;
+  box-shadow: 0 0 0 2px rgba(88, 60, 135, 0.15);
+}
+
+/* Responsivo (mobile) */
+@media (max-width: 600px) {
+  .filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Agrupa valor + ações */
+.item-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Container dos botões */
+.item-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Botão base */
+.btn-action {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background-color: #f5f3fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+/* Hover padrão do teu sistema */
+.btn-action:hover {
+  transform: translateY(-2px);
+}
+
+/* Edit (roxo padrão do sistema) */
+.btn-action.edit {
+  color: #583c87;
+}
+
+.btn-action.edit:hover {
+  background-color: #eaddf7;
+}
+
+/* Delete (vermelho já usado no projeto) */
+.btn-action.delete {
+  color: #e0465c;
+}
+
+.btn-action.delete:hover {
+  background-color: #fcebeb;
+}
+.feedback-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  min-width: 300px;
+  padding: 15px 25px;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  animation: slideDown 0.5s ease forwards;
+}
+
+.feedback-toast.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.feedback-toast.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.feedback-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.timestamp {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  border-left: 1px solid rgba(0,0,0,0.1);
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+/* animação simples do toast */
+@keyframes slideDown {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
 }

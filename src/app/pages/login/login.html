@@ -1,4 +1,17 @@
 
+  <div class="feedback-toast" 
+     *ngIf="showFeedback" 
+     [ngClass]="feedbackType">
+    
+    <div class="feedback-content">
+        <span class="icon" *ngIf="feedbackType === 'success'">✅</span>
+        <span class="icon" *ngIf="feedbackType === 'error'">⚠️</span>
+        
+        <span class="message">{{ feedbackMessage }}</span>
+        <span class="timestamp">{{ feedbackTimestamp }}</span>
+    </div>
+</div>
+  
   <div class="login-card">
     
     <div class="header text-center">
